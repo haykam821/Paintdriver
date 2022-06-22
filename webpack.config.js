@@ -7,7 +7,7 @@ module.exports = {
 	},
 	mode: process.env.WEBPACK_MODE || "production",
 	output: {
-		filename: "[id].js",
+		filename: "[name].js",
 		path: path.resolve(__dirname, "./dist"),
 	},
 };
