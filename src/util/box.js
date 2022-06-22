@@ -10,9 +10,6 @@ class Box {
 		return this.start.subtract(this.end);
 	}
 
-	/**
-	 * @param {CanvasRenderingContext2D} context
-	 */
 	render(context) {
 		const size = this.size();
 		context.fillRect(this.start.x, this.start.y, size.x, size.y);

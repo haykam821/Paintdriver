@@ -4,23 +4,23 @@ class Vec2 {
 		this.y = y;
 	}
 
-	map(other, mapper) {
-		const x = mapper(this.x, other.x);
-		const y = mapper(this.y, other.y);
+	resolve(other, resolver) {
+		const x = resolver(this.x, other.x);
+		const y = resolver(this.y, other.y);
 
 		return new Vec2(x, y);
 	}
 
 	min(other) {
-		return this.map(other, Math.min);
+		return this.resolve(other, Math.min);
 	}
 
 	max(other) {
-		return this.map(other, Math.max);
+		return this.resolve(other, Math.max);
 	}
 
 	subtract(other) {
-		return this.map(other, (a, b) => b - a);
+		return this.resolve(other, (a, b) => b - a);
 	}
 
 	static random(size, random) {

@@ -4,9 +4,6 @@ const { XORShift64 } = require("random-seedable");
 const SEED_PROPERTY = "--seed";
 
 class WebdriverPaint {
-	/**
-	 * @param {CanvasRenderingContext2D} context
-	 */
 	paint(context, size, properties) {
 		const seed = properties.get(SEED_PROPERTY);
 		const random = new XORShift64(Math.floor(seed.value));
