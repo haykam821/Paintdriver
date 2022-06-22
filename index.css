@@ -1,0 +1,83 @@
+/* Variables */
+:root {
+	--background: #FFF;
+	--stroke: #111;
+	--border: var(--stroke);
+
+	--spacing: 8px;
+
+	--seed-start: 821;
+	--seed-count: 65536;
+	--seed-duration: 1s;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	:root {
+		--background: #15191D;
+		--stroke: #CCC;
+		--border: #555;
+	}
+}
+
+/* Styling */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--background);
+	color: var(--stroke);
+
+	font-family: 'Ubuntu', system-ui, sans-serif;
+
+	overflow: hidden;
+}
+
+body {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	margin: var(--spacing);
+	padding: var(--spacing);
+
+	border: 1px solid var(--border);
+
+	background-image: paint(webdriver);
+	--seed: var(--seed-start);
+
+	animation-name: change;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: calc(var(--seed-count) * var(--seed-duration));
+	animation-delay: var(--seed-duration);
+}
+
+body::after {
+	position: absolute;
+	bottom: var(--spacing);
+
+	counter-reset: seedString calc(var(--seed) - var(--seed-start));
+	content: "aqua.flv - Slide " counter(seedString, padded);
+
+	font-family: 'Courier New', monospace;
+	font-weight: bold;
+}
+
+@counter-style padded {
+	system: numeric;
+	symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+	pad: 4 "0";
+}
+
+@keyframes change {
+	0% {
+		--seed: var(--seed-start);
+	}
+
+	100% {
+		--seed: calc(var(--seed-start) + var(--seed-count));
+	}
+}
